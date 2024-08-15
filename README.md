@@ -15,7 +15,7 @@ node customers.js
 
 # CONNECT TO THE "REMOTE" SERVICES
 
-Customer service can be reached at GET http://localhost:9000
+Customer service can be reached at GET http://localhost:9090
 
 Invoice service can be reached at GET http://localhost:9092
 
