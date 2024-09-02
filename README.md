@@ -63,7 +63,7 @@ Write an application that calculates which customer spent the most money in our 
 
 # EXTRA POINTS
 
-What is the best test strategy for an application like this? The team with highest test coverage will be awarded 5 extra points!
+What is the best test strategy for an application like this? The team with the best test strategy will be awarded 5 extra points!
 
 Tip: No, "I will let QA decide" is not an option
 
