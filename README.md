@@ -60,3 +60,13 @@ If we assume that Alice Klark has one invoice only then her total amount spent w
 # THE CHALLENGE
 
 Write an application that calculates which customer spent the most money in our store and displays his/her name, surname, and total amount spent.
+
+# EXTRA POINTS
+
+What is the best test strategy for an application like this? The team with highest test coverage will be awarded 5 extra points!
+
+Tip: No, "I will let QA decide" is not an option
+
+# EVEN MORE EXTRA POINTS
+
+The team with highest test coverage will be awarded 5 extra points!
