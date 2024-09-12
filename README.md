@@ -70,3 +70,31 @@ Tip: No, "I will let QA decide" is not an option
 # EVEN MORE EXTRA POINTS
 
 The team with highest test coverage will be awarded 5 extra points!
+
+# Python setup
+## Install python
+We recommend using python 3.11 or above. Download from [here](https://www.python.org/downloads/)
+
+## Create a Virtual environment
+
+We recommend using GitBash on Windows.
+```bash
+python -m venv .venv
+source .venv/Scripts/activate
+```
+## Install dependencies
+From the top-level directory enter the command to install pip and the dependencies of the project
+
+```bash
+python -m pip install --upgrade pip && pip install -r requirements.txt
+```
+
+# Running the script
+```bash
+python -m calculate_top_spender
+```
+
+# Running Tests
+```bash
+pytest
+```
