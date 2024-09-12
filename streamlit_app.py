@@ -34,7 +34,7 @@ def run_tests():
         try:
             # Run pytest command and capture the output
             result = subprocess.run(
-                ["pytest", "-v", "test_app.py"],
+                ["pytest", "--cov", "top_spender", "test_app.py", "--cov-report=term-missing"],
                 capture_output=True,
                 text=True
             )
@@ -53,28 +53,28 @@ def main():
         st.write("Fetching Top Spenders in Our Store...")
         # Add a progress bar
         progress_bar = st.progress(0)
-        
+
         top_spenders = fetch_top_spenders()
-        
+
         # Simulate progress completion
         progress_bar.progress(100)
-        
+
         if top_spenders:
             display_top_spenders(top_spenders)
         else:
             st.write("Failed to retrieve data.")
-        
+
     with tabs[1]:
         st.write("### Test Results")
-        
+
         # Add a progress bar
         progress_bar = st.progress(0)
-        
+
         test_results = run_tests()
-        
+
         # Simulate progress completion
         progress_bar.progress(100)
-        
+
         st.code(test_results, language='text')
 
 if __name__ == "__main__":
