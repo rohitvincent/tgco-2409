@@ -1,6 +1,10 @@
 import unittest
-from calculate_top_spender import calculate_top_spender
+import sys
+import os
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from top_spender import calculate_top_spender
 
 class TestCalculateTopSpender(unittest.TestCase):
     def setUp(self):
