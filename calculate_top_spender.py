@@ -1,7 +1,7 @@
 import requests
 import argparse
 
-from top_spender import calculate_top_spender
+from top_spender import calculate_top_spenders as calculate_top_spender
 
 # Sample customers and invoices data
 customers = [
@@ -88,4 +88,6 @@ if __name__ == '__main__':
             print("No invoice data available or an error occurred.")
 
     # Call the function
-    calculate_top_spender(customers, invoices)
+    data = calculate_top_spender(customers, invoices)
+    print("-----Top spenders---------")
+    print(data)
