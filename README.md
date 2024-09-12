@@ -177,5 +177,67 @@ The following cases are covered as part of the unit test:
 -**Test case where customer has invalid name types (non-string)**
 *Ensures that the function correctly handles invalid customer Names.*
 
+# TESTING STRATEGY
+
+## 1. Unit Testing
+Unit testing focuses on validating individual functions and components in isolation. For the Top Spender application, the main focus is on the `calculate_top_spenders()` and `get_request_data()` functions, ensuring they behave as expected under various conditions.
+
+### Tools:
+- **pytest**: A powerful testing framework used to write and execute unit tests.
+- **unittest.mock.patch**: Used to mock external dependencies during testing, particularly for mocking the behavior of HTTP requests.
+
+### Test Cases:
+- **Positive Tests**: Validate the correct behavior of functions with normal, expected inputs.
+- **Negative Tests**: Ensure functions handle incorrect or unexpected inputs gracefully without crashing.
+
+---
+
+## 2. Integration Testing
+Integration tests validate that the different components of the application (Flask API, remote services) work together as expected. This includes making sure the application can retrieve and process data from remote customer and invoice services.
+
+### Tools:
+- **pytest with mocking**: Used to mock external HTTP requests to ensure the app can work with data fetched remotely.
+
+### Test Cases:
+- Validate the correct integration of customer and invoice data.
+- Ensure proper handling of failed remote service requests.
+
+---
+
+## 3. Edge Case Testing
+Edge cases are unusual or extreme conditions that could cause failures or unexpected behavior. The test strategy ensures that these edge cases are thoroughly covered:
+
+### Edge Cases:
+- Handling of invalid invoice amounts (negative or zero).
+- Duplicate customer entries.
+- Multiple customers with the same total spending.
+- Invoices referencing non-existent customer IDs.
+- Missing or malformed data from remote services.
+- Handling very large invoice amounts.
+- Customers with missing or empty fields.
+
+---
+
+## 4. Functional Testing
+Functional tests ensure that the system behaves as expected from an end-user perspective. This involves testing the Flask API endpoints (`/top-spender`) and verifying the output format.
+
+### Tools:
+- **Postman or curl**: Can be used to simulate HTTP requests and validate responses from the API.
+- **Flask's built-in testing client**: To simulate requests and capture responses programmatically.
+
+---
+
+## 5. User Interface Testing (Streamlit App)
+If using the optional UI, it is important to verify the interaction between the frontend (Streamlit) and the backend Flask API. This ensures that the top spenders are displayed correctly.
+
+### Tools:
+- **Streamlit’s testing capabilities** to simulate interaction with the frontend components.
+
+---
+
+## 6. Performance Testing (Optional)
+For large datasets, performance testing can ensure that the system scales effectively and responds within acceptable time limits. This may involve testing the application with large customer and invoice datasets to validate speed and memory usage.
+
+
 
 
