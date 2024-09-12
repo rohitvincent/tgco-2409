@@ -44,7 +44,7 @@ def get_request_data(url):
         return None
 
 
-def calculate_top_spender(customers, invoices):
+def calculate_top_spender(customers, invoices) -> list:
     """Calculates the top spender from the provided customers & invoices data and display the information."""
     # Dictionary to store total amount spent by each customer
     customer_spending = {}
@@ -72,7 +72,8 @@ def calculate_top_spender(customers, invoices):
         print(f"Top spender: {top_customer['name']} {top_customer['surname']}")
         print(f"Total amount spent: ${total_amount_spent:.2f}")
         print("--------------------------------------------------------------")
-        return top_customer["name"], top_customer["surname"], total_amount_spent
+        top_customer.update({"total_spent": total_amount_spent})
+        return top_customer
     else:
         print("Top spender not found")
         return None
