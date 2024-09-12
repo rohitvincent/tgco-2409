@@ -71,7 +71,7 @@ Tip: No, "I will let QA decide" is not an option
 
 The team with highest test coverage will be awarded 5 extra points!
 
-# Python setup
+# PYTHON SETUP
 ## Install python
 We recommend using python 3.11 or above. Download from [here](https://www.python.org/downloads/)
 
@@ -91,10 +91,15 @@ python -m pip install --upgrade pip && pip install -r requirements.txt
 
 # Running the script
 ```bash
-python -m calculate_top_spender
+python app.py
 ```
+
+Top Spender details can be found at http://127.0.0.1:5000/top-spender
 
 # Running Tests
 ```bash
 pytest
 ```
+
+
+
