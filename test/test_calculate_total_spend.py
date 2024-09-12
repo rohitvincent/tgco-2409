@@ -1,6 +1,7 @@
 import unittest
 from calculate_top_spender import calculate_top_spender
 
+
 class TestCalculateTopSpender(unittest.TestCase):
     def setUp(self):
         # Common customer data
@@ -48,6 +49,18 @@ class TestCalculateTopSpender(unittest.TestCase):
         expected = {"ID": 1, "name": "Alice", "surname": "Smith", "total_spent": 100.00}
         result = calculate_top_spender(self.customers, invoices)
         self.assertEqual(result, expected)
+
+    def test_duplicate_customers_names(self):
+        customers = [
+            {"ID": 0, "name": "Alice", "surname": "Klark"},
+            {"ID": 1, "name": "Alice", "surname": "Klark"}
+        ]
+        invoices = [{"ID": 0, "customerId": 0, "amount": 100},
+                    {"ID": 3, "customerId": 1, "amount": 150}]
+
+        result = calculate_top_spender(customers, invoices)
+        assert result == {'ID': 1, 'name': 'Alice', 'surname': 'Klark', 'total_spent': 150}
+
 
 if __name__ == '__main__':
     unittest.main()
