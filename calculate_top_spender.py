@@ -44,8 +44,12 @@ def get_request_data(url):
         return None
 
 
-def calculate_top_spender(customers, invoices) -> list:
+def calculate_top_spender(customers:list, invoices:list) -> list:
     """Calculates the top spender from the provided customers & invoices data and display the information."""
+    if not (len(invoices) and len(customers)):
+        print("Customers and Invoice data cannot be empty!")
+        return None
+
     # Dictionary to store total amount spent by each customer
     customer_spending = {}
 
