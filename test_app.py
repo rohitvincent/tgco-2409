@@ -145,3 +145,19 @@ def test_empty_responses_from_services():
     
     result = calculate_top_spenders(customers, invoices)
     assert result == []  # No data, so no top spenders    
+
+# Test case where customer has invalid name types (non-string)
+def test_customer_with_non_string_name():
+    customers = [{"ID": 0, "name": 12345, "surname": None}]  # Invalid name types
+    invoices = [{"ID": 0, "customerId": 0, "amount": 100}]
+    
+    result = calculate_top_spenders(customers, invoices)
+    assert result == [{"name": 12345, "surname": None, "total_spent": 100.00}]  # Should handle non-string names
+
+# Test case where invoice has invalid customerId type
+def test_invoice_with_invalid_customer_id_type():
+    customers = [{"ID": 0, "name": "Alice", "surname": "Klark"}]
+    invoices = [{"ID": 0, "customerId": "invalid_id", "amount": 100}]  # Invalid customerId
+    
+    result = calculate_top_spenders(customers, invoices)
+    assert result == []  # Should ignore invalid customerId types

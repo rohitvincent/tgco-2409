@@ -165,6 +165,11 @@ The following cases are covered as part of the unit test:
 - **Test empty responses from services**  
   *Ensures that the function correctly handles empty data for both customers and invoices.*
 
+-**Test case where invoice has invalid customerId type**
+  *Ensures that the function correctly handles invalid customer IDs.*
+
+-**Test case where customer has invalid name types (non-string)**
+*Ensures that the function correctly handles invalid customer Names.*
 
 
 
