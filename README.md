@@ -57,21 +57,7 @@ where ID is the unique identifier, customer ID is the customer ID, which is loos
 
 If we assume that Alice Klark has one invoice only then her total amount spent would be 12.
 
-# THE CHALLENGE
-
-Write an application that calculates which customer spent the most money in our store and displays his/her name, surname, and total amount spent.
-
-# EXTRA POINTS
-
-What is the best test strategy for an application like this? The team with the best test strategy will be awarded 5 extra points!
-
-Tip: No, "I will let QA decide" is not an option
-
-# EVEN MORE EXTRA POINTS
-
-The team with highest test coverage will be awarded 5 extra points!
-
-# PYTHON SETUP
+# Python setup
 ## Install python
 We recommend using python 3.11 or above. Download from [here](https://www.python.org/downloads/)
 
@@ -90,7 +76,38 @@ python -m pip install --upgrade pip && pip install -r requirements.txt
 ```
 
 # Running the script
+To see all the options available, use `-h`
 ```bash
+$ python calculate_top_spender.py -h
+usage: calculate_top_spender.py [-h] [--use_remote_data USE_REMOTE_DATA] [--customer_data_url CUSTOMER_DATA_URL] [--invoice_data_url INVOICE_DATA_URL]
+
+Application to calculate which customer spent the most money in the store and displays his/her name, surname, and total amount spent.
+
+options:
+  -h, --help            show this help message and exit
+  --use_remote_data USE_REMOTE_DATA
+                        Whether to use remote customers & invoice data.
+  --customer_data_url CUSTOMER_DATA_URL
+                        customer data endpoint(default :"http://localhost:9090/")
+  --invoice_data_url INVOICE_DATA_URL
+                        invoice data endpoint(default :"http://localhost:9092/")
+```
+
+## Execute the scripts
+```bash
+# To work with local data
+python calculate_top_spender.py --use_remote_data False
+
+# To work with remote data(uses default endpoints for customer & invoice data when not provided )
+python calculate_top_spender.py --use_remote_data True
+
+# Explicitly provide endpoints urls
+python calculate_top_spender.py --use_remote_data True --customer_data_url "http://localhost:9090" --invoice_data_url "http://localhost:9092"
+
+```
+## Frontend App
+
+```
 python app.py
 ```
 

@@ -1,5 +1,5 @@
 import requests
-# import argparse
+import argparse
 
 # Sample customers and invoices data
 customers = [
@@ -80,33 +80,27 @@ def calculate_top_spender(customers, invoices):
 
 if __name__ == '__main__':
 
-    # # Create the parser
-    # parser = argparse.ArgumentParser(description="Application to calculate which customer spent the most money in the store and displays his/her name, surname, and total amount spent.")
+    # Create the parser
+    parser = argparse.ArgumentParser(description="Application to calculate which customer spent the most money in the store and displays his/her name, surname, and total amount spent.")
 
-    # # Add a positional arguments
-    # # user_input = input("Whether to use remote customers & invoice data: ")
-    # parser.add_argument('use_remote_data', type=bool, default=True, help='Whether to use remote customers & invoice data.')
+    # Add arguments
+    parser.add_argument('--use_remote_data', type=bool, required=True, default=True, help='Whether to use remote customers & invoice data.')
+    parser.add_argument('--customer_data_url', required=False, type=str, default="http://localhost:9090/", help='customer data endpoint(default :"http://localhost:9090/")')
+    parser.add_argument('--invoice_data_url', required=False, type=str, default="http://localhost:9092/", help='invoice data endpoint(default :"http://localhost:9092/")')
 
-    # # Parse the initial arguments
-    # args, unknown = parser.parse_known_args()
+    # Parse all arguments including the dynamically added ones
+    args = parser.parse_args()
 
-    # # Dynamically add arguments based on the `use_remote_data`
-    # if args.use_remote_data:
-    #     use_remote_data = True
-    #     parser.add_argument('--customer_data_url', required=False, type=str, default="http://localhost:9090/", help='customer data endpoint(default :"http://localhost:9090/")')
-    #     parser.add_argument('--invoice_data_url', required=False, type=str, default="http://localhost:9092/", help='invoice data endpoint(default :"http://localhost:9092/")')
-    # else:
-    #     use_remote_data = False
-
-    # # Parse all arguments including the dynamically added ones
-    # args = parser.parse_args()
-
-    use_remote_data = True
+    # Dynamically add arguments based on the `use_remote_data`
+    if args.use_remote_data:
+        use_remote_data = True
+    else:
+        use_remote_data = False
 
     # Use remote data
     if use_remote_data:
-        customer_data_url = "http://localhost:9090"
-        invoice_data_url = "http://localhost:9092"
+        customer_data_url = args.customer_data_url
+        invoice_data_url = args.invoice_data_url
 
         # Retrieve the customer data
         customers_data = get_request_data(customer_data_url)
