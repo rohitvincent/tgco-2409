@@ -105,9 +105,18 @@ python calculate_top_spender.py --use_remote_data True
 python calculate_top_spender.py --use_remote_data True --customer_data_url "http://localhost:9090" --invoice_data_url "http://localhost:9092"
 
 ```
+## Frontend App
 
+```
+python app.py
+```
+
+Top Spender details can be found at http://127.0.0.1:5000/top-spender
 
 # Running Tests
 ```bash
 pytest
 ```
+
+
+
