@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect, url_for
 import requests
 
 app = Flask(__name__)
@@ -60,6 +60,11 @@ def calculate_top_spenders(customers, invoices):
                 })
 
     return top_spender_details
+
+@app.route('/', methods=['GET'])
+def index():
+    """Default route that redirects to the top spenders endpoint"""
+    return redirect(url_for('get_top_spenders'))
 
 @app.route('/top-spender', methods=['GET'])
 def get_top_spenders():
