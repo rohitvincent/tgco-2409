@@ -122,7 +122,7 @@ streamlit run streamlit_app.py
 # TESTING
 Run the following command to run unit-tests:
 ```bash
-pytest --cov=top_spender test/test_calculate_total_spend.py --cov-report=term-missing
+pytest --cov=top_spender test_app.py --cov-report=term-missing
 ```
 
 The following cases are covered as part of the unit test:

@@ -1,37 +1,43 @@
-def calculate_top_spender(customers: list, invoices: list) -> dict:
-    """Calculates the top spender from the provided customers & invoices data and display the information."""
-    if not (len(invoices) and len(customers)):
-        print("Customers and Invoice data cannot be empty!")
-        return None
-
-    # Dictionary to store total amount spent by each customer
+def calculate_top_spenders(customers, invoices):
+    """Function to calculate the top spenders based on customer and invoice data"""
     customer_spending = {}
 
-    # Calculate total spending for each customer
     for invoice in invoices:
-        customer_id = invoice["customerId"]
-        amount = invoice["amount"]
+        customer_id = invoice.get("customerId")
+        amount = invoice.get("amount", 0)  # Default to 0 if amount is missing
 
-        if customer_id in customer_spending:
-            customer_spending[customer_id] += amount
-        else:
-            customer_spending[customer_id] = amount
+        if customer_id is not None and amount > 0:  # Ignore negative amounts
+            if customer_id in customer_spending:
+                customer_spending[customer_id] += amount
+            else:
+                customer_spending[customer_id] = amount
 
-    # Find the customer ID who spent the most
-    top_customer_id = max(customer_spending, key=customer_spending.get)
-    total_amount_spent = customer_spending[top_customer_id]
+    if not customer_spending:
+        return []  # No spending data
 
-    # Find the corresponding customer details and returns `None` if not found
-    top_customer = next((cust for cust in customers if cust["ID"] == top_customer_id), None)
+    # Find the maximum spending amount
+    max_spending = max(customer_spending.values())
 
-    if top_customer:
-        # Display the name, surname, and total amount spent
-        print("--------------------------------------------------------------")
-        print(f"Top spender: {top_customer['name']} {top_customer['surname']}")
-        print(f"Total amount spent: ${total_amount_spent:.2f}")
-        print("--------------------------------------------------------------")
-        top_customer.update({"total_spent": total_amount_spent})
-        return top_customer
-    else:
-        print("Top spender not found")
-        return None
+    # Find all customers with the maximum spending amount
+    top_spenders_ids = {
+        cust_id
+        for cust_id, amount in customer_spending.items()
+        if amount == max_spending
+    }
+
+    # Get details of top spenders ensuring no duplicate based on first and last name
+    seen_names = set()
+    top_spender_details = []
+
+    for cust in customers:
+        if cust["ID"] in top_spenders_ids:
+            name_key = (cust["name"], cust["surname"])
+            if name_key not in seen_names:
+                seen_names.add(name_key)
+                top_spender_details.append({
+                    "name": cust["name"],
+                    "surname": cust["surname"],
+                    "total_spent": max_spending
+                })
+
+    return top_spender_details
