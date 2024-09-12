@@ -107,11 +107,17 @@ python calculate_top_spender.py --use_remote_data True --customer_data_url "http
 ```
 ## Frontend App
 
+Run the backend Flask API:
 ```
 python app.py
 ```
 
 Top Spender details can be found at http://127.0.0.1:5000/top-spender
+
+If you want a UI, run the streamlit app after deploy the Flask backend as per above:
+```
+streamlit run streamlit_app.py
+```
 
 # TESTING
 Run the following command to run unit-tests:
