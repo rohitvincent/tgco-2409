@@ -122,53 +122,53 @@ streamlit run streamlit_app.py
 # TESTING
 Run the following command to run unit-tests:
 ```bash
-pytest
+pytest --cov=top_spender test/test_calculate_total_spend.py --cov-report=term-missing
 ```
 
 The following cases are covered as part of the unit test:
-- **Test customers with negative or zero invoice amounts**  
+- **Test customers with negative or zero invoice amounts**
   *Checks if customers with invalid (negative or zero) invoice amounts are handled correctly and excluded from top spenders.*
 
-- **Test duplicate customers**  
+- **Test duplicate customers**
   *Ensures that duplicate customer entries do not affect the results.*
 
-- **Test multiple customers with the same top spending amount**  
+- **Test multiple customers with the same top spending amount**
   *Validates that multiple customers with the same total spending are included as top spenders.*
 
-- **Test invoices with non-existent customer IDs**  
+- **Test invoices with non-existent customer IDs**
   *Tests how the function handles invoices with customer IDs that do not exist in the customer data.*
 
-- **Test customers without names or surnames**  
+- **Test customers without names or surnames**
   *Checks if customers with empty names or surnames are still processed correctly.*
 
-- **Test customers with very large invoice amounts**  
+- **Test customers with very large invoice amounts**
   *Verifies that very large invoice amounts are handled properly.*
 
-- **Test empty strings for customer names or surnames**  
+- **Test empty strings for customer names or surnames**
   *Ensures the function can handle customers with empty name or surname fields.*
 
-- **Test malformed data from remote services**  
+- **Test malformed data from remote services**
   *Checks if the function gracefully handles missing or malformed invoice data, such as missing `customerId`.*
 
-- **Test multiple customers with the same total spending**  
+- **Test multiple customers with the same total spending**
   *Confirms that multiple customers with equal total spending are both recognized as top spenders.*
 
-- **Test no invoices for any customers**  
+- **Test no invoices for any customers**
   *Verifies that if no invoices exist, no top spenders are returned.*
 
-- **Test no customers**  
+- **Test no customers**
   *Tests how the function handles the absence of customers, even if invoices are present.*
 
-- **Test no invoices**  
+- **Test no invoices**
   *Checks the behavior when customers exist but there are no invoices.*
 
-- **Test customers with multiple invoices**  
+- **Test customers with multiple invoices**
   *Ensures that the total spent by a customer is the sum of all their invoices.*
 
-- **Test customers without invoices**  
+- **Test customers without invoices**
   *Verifies that customers without invoices are excluded from the top spenders list.*
 
-- **Test empty responses from services**  
+- **Test empty responses from services**
   *Ensures that the function correctly handles empty data for both customers and invoices.*
 
 -**Test case where invoice has invalid customerId type**
